@@ -31,9 +31,11 @@ var currentWord;
 var workingWord = [];
 var remainingGuesses = 0;
 var wins = 0;
+//does not work 
 var audio = new Audio('../audio/Cat-meow-3.mp3');
 
 
+//need to create a function to return game back to its start state and resets all variables
 
 function resetGame() {
 
@@ -43,6 +45,8 @@ function resetGame() {
 	lettersGuessed = [];
 	workingWord = [];
 	document.getElementById("hangman").src="assets/images/Hangman.png";
+
+//pushes dashes into current word
 
 for (var i =0;i<wordBank[currentWord].length; i++) {
 	workingWord.push("_");
@@ -55,6 +59,7 @@ updateDisplay();
 
 };
 
+//updates elements on the HTML page
 
 function updateDisplay() {
 document.getElementById("totalWins").textContent = wins;
@@ -87,8 +92,10 @@ document.onkeydown = function(event) {
 		gameFinish = false;
 	}
 	else {
+		//controls A-Z preses
 		if(event.keyCode >= 65 && event.keyCode <= 90 && event.keyCode)
 			makeGuess(event.key.toLowerCase());
+		//spacebar
 		if(event.keyCode ==32)
 			makeGuess(event.key.toLowerCase());
 	}
@@ -106,7 +113,6 @@ function makeGuess(letter) {
 		evaluateGuess (letter);
 
 	}
-
 	updateDisplay();
 	checkWin();
 };
@@ -137,6 +143,7 @@ function checkWin() {
 	if(workingWord.indexOf("_")=== -1) {
 		document.getElementById("win-image").style.cssText="display: block";
 		document.getElementById("tryAgain").style.cssText= "display: block";
+		//audio does not play
 		audio.play();
 		wins ++;
 		gameFinish = true;
