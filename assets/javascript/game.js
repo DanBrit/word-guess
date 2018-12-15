@@ -9,12 +9,12 @@
 
 var wordBank = 
 [
-	"russian-blue",
+	"russian blue",
 	"persian",
 	"siamese",
-	"scottish-fold",
-	"british-shorthair",
-	"maine-coon",
+	"scottish fold",
+	"british shorthair",
+	"maine coon",
 	"munchkin",
 	"ragdoll",
 	"abyssinian",
@@ -46,7 +46,7 @@ function resetGame() {
 	currentWordIndex= Math.floor(Math.random()*(wordBank.length));
 	lettersGuessed = [];
 	workingWord = [];
-document.getElementById("hangman").src="../images/Hangman.png";
+	document.getElementById("hangman").src="assets/images/Hangman.png";
 
 for (var i =0;i<wordBank[currentWordIndex].length; i++) {
 	workingWord.push("_");
@@ -70,14 +70,14 @@ for (var i = 0; i < workingWord.length; i++) {
 document.getElementById("remainingGuesses").textContent = remainingGuesses;
 document.getElementById("lettersGuessed").textContent = lettersGuessed;
 if (remainingGuesses <= 0) {
-	// game over image
+	document.getElementById("loss-image").style.cssText = "display: block"
 	document.getElementById("PressKeyTryAgain").style.cssText = "display: block";
 	gameFinish = true;
 }
 
 };
 function hangmanUpdate(){
-document.getElementById("hangman").src="../images/hangman"+ (maxTries - remainingGuesses)+".png"
+document.getElementById("hangman").src="assets/images/hangman"+ (maxTries - remainingGuesses)+".png"
 
 };
 
@@ -87,7 +87,9 @@ document.onkeydown = function(event) {
 		gameFinish = false;
 	}
 	else {
-		if(event.keyCode >= 65 && event.keyCode <= 90)
+		if(event.keyCode >= 65 && event.keyCode <= 90 && event.keyCode)
+			makeGuess(event.key.toLowerCase());
+		if(event.keyCode ==32)
 			makeGuess(event.key.toLowerCase());
 	}
 };
@@ -132,7 +134,7 @@ function evaluateGuess (letter) {
 
 function checkWin() {
 	if(workingWord.indexOf("_")=== -1) {
-		// win message or image document.getElementById;
+		document.getElementById("win-image").style.cssText="display: block";
 		document.getElementById("PressKeyTryAgain").style.cssText= "display: block";
 		wins ++;
 		gameFinish = true;
