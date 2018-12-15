@@ -56,13 +56,13 @@ for (var i =0;i<wordBank[currentWord].length; i++) {
 document.getElementById("tryAgain").style.cssText= "display: none";
 document.getElementById("win-image").style.cssText= "display: none";
 document.getElementById("loss-image").style.cssText= "display: none";
-updateDisplay();
+updateGameDisplay();
 
 };
 
 //updates elements on the HTML page
 
-function updateDisplay() {
+function updateGameDisplay() {
 document.getElementById("totalWins").textContent = wins;
 document.getElementById("totalLosses").textContent = losses;
 document.getElementById("currentWord").textContent = "";
@@ -116,7 +116,7 @@ function makeGuess(letter) {
 		evaluateGuess (letter);
 
 	}
-	updateDisplay();
+	updateGameDisplay();
 	checkWin();
 };
 
@@ -146,8 +146,6 @@ function checkWin() {
 	if(workingWord.indexOf("_")=== -1) {
 		document.getElementById("win-image").style.cssText="display: block";
 		document.getElementById("tryAgain").style.cssText= "display: block";
-		//audio does not play
-		audio.play();
 		wins ++;
 		gameFinish = true;
 
