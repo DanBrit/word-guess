@@ -31,6 +31,7 @@ var currentWord;
 var workingWord = [];
 var remainingGuesses = 0;
 var wins = 0;
+var losses = 0;
 //does not work 
 var audio = new Audio('../audio/Cat-meow-3.mp3');
 
@@ -63,6 +64,7 @@ updateDisplay();
 
 function updateDisplay() {
 document.getElementById("totalWins").textContent = wins;
+document.getElementById("totalLosses").textContent = losses;
 document.getElementById("currentWord").textContent = "";
 for (var i = 0; i < workingWord.length; i++) {
 	document.getElementById("currentWord").textContent += workingWord [i];
@@ -72,6 +74,7 @@ document.getElementById("lettersGuessed").textContent = lettersGuessed;
 if (remainingGuesses <= 0) {
 	document.getElementById("loss-image").style.cssText = "display: block"
 	document.getElementById("tryAgain").style.cssText = "display: block";
+	losses ++;
 	gameFinish = true;
 }
 
